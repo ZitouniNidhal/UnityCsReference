@@ -133,7 +133,108 @@ namespace UnityEngine.U2D
             }
         }
 
+public struct Solution : IDisposable
+        {
+            public NativeArray<Vector2> points;
+            public NativeArray<int> pathSizes;
+            public NativeArray<Rect> boundingRect;
 
+            public Solution(int pointsBufferSize, int pathSizesBufferSize, Allocator allocator)
+            {
+                points = new NativeArray<Vector2>(pointsBufferSize, allocator, NativeArrayOptions.ClearMemory);
+                pathSizes = new NativeArray<int>(pathSizesBufferSize, allocator, NativeArrayOptions.ClearMemory);
+                boundingRect = new NativeArray<Rect>(1, allocator);
+            }
+
+            public void Dispose()
+            {
+                if (points.IsCreated)
+                    points.Dispose();
+                if (pathSizes.IsCreated)
+                    pathSizes.Dispose();
+                if (boundingRect.IsCreated)
+                    boundingRect.Dispose();
+            }
+
+            // Nouvelle fonction : calcul de l'aire totale des polygones
+            public float CalculerAireTotale()
+            {
+                float aireTotale = 0f;
+                int pointIndex = 0;
+
+                for (int i = 0; i < pathSizes.Length; i++)
+                {
+                    int pathSize = pathSizes[i];
+                    if (pathSize < 3) continue; // Ignorer les chemins qui ne forment pas de polygone
+
+                    float aire = 0f;
+                    for (int j = 0; j < pathSize; j++)
+                    {
+                        Vector2 p1 = points[pointIndex + j];
+                        Vector2 p2 = points[pointIndex + (j + 1) % pathSize];
+                        aire += (p1.x * p2.y) - (p2.x * p1.y);
+                    }
+
+                    aireTotale += Mathf.Abs(aire) / 2f;
+                    pointIndex += pathSize;
+                }
+
+                return aireTotale;
+            }
+
+            // Nouvelle fonction : valider les chemins
+            public bool ValiderChemins()
+            {
+                // Simple vérification pour s'assurer qu'il y a au moins 3 points dans chaque chemin
+                for (int i = 0; i < pathSizes.Length; i++)
+                {
+                    if (pathSizes[i] < 3)
+                    {
+                        Debug.LogWarning($"Le chemin {i} est invalide : trop peu de points.");
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            // Nouvelle fonction : simplifier les chemins en supprimant les points colinéaires
+            public void SimplifierChemins()
+            {
+                int pointIndex = 0;
+                for (int i = 0; i < pathSizes.Length; i++)
+                {
+                    int pathSize = pathSizes[i];
+                    NativeArray<Vector2> cheminSimplifie = new NativeArray<Vector2>(pathSize, Allocator.Temp);
+
+                    int compteur = 0;
+                    for (int j = 0; j < pathSize; j++)
+                    {
+                        Vector2 current = points[pointIndex + j];
+                        Vector2 next = points[pointIndex + (j + 1) % pathSize];
+                        Vector2 nextNext = points[pointIndex + (j + 2) % pathSize];
+
+                        if (!EstColineaire(current, next, nextNext))
+                        {
+                            cheminSimplifie[compteur++] = current;
+                        }
+                    }
+
+                    for (int k = 0; k < compteur; k++)
+                    {
+                        points[pointIndex + k] = cheminSimplifie[k];
+                    }
+
+                    pathSizes[i] = compteur; // Mise à jour de la taille du chemin
+                    cheminSimplifie.Dispose();
+                    pointIndex += pathSize;
+                }
+            }
+
+            private bool EstColineaire(Vector2 p1, Vector2 p2, Vector2 p3)
+            {
+                return Mathf.Abs((p2.y - p1.y) * (p3.x - p2.x) - (p2.x - p1.x) * (p3.y - p2.y)) < 1e-5f;
+            }
+        }
         //---------------------------------
         // Extern Functions
         //---------------------------------
