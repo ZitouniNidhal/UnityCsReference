@@ -20,7 +20,12 @@ namespace UnityEngine.AI
                 throw new ArgumentNullException(nameof(markups));
             if (results == null)
                 throw new ArgumentNullException(nameof(results));
-
+       public static void CollectSources(
+            Bounds includedWorldBounds, int includedLayerMask, NavMeshCollectGeometry geometry, int defaultArea,
+            List<NavMeshBuildMarkup> markups, List<NavMeshBuildSource> results)
+        {
+            CollectSources(includedWorldBounds, includedLayerMask, geometry, defaultArea, false, markups, false, results);
+        } 
             // Ensure strictly positive extents
             includedWorldBounds.extents = Vector3.Max(includedWorldBounds.extents, 0.001f * Vector3.one);
             var resultsArray = CollectSourcesInternal(
