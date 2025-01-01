@@ -1,0 +1,102 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETStandard,Version=v2.1": {
+      "Unity.CecilTools/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Unity.CecilTools.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Unity.CecilTools.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Unity.CecilTools/1.0.0": {
+      "type": "project",
+      "path": "../Unity.CecilTools/Unity.CecilTools.gen.csproj",
+      "msbuildProject": "../Unity.CecilTools/Unity.CecilTools.gen.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETStandard,Version=v2.1": [
+      "Unity.CecilTools >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\nidha\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\nidha\\OneDrive\\Bureau\\unitygithub\\UnityCsReference\\Tools\\Unity.SerializationLogic\\Unity.SerializationLogic.gen.csproj",
+      "projectName": "Unity.SerializationLogic",
+      "projectPath": "C:\\Users\\nidha\\OneDrive\\Bureau\\unitygithub\\UnityCsReference\\Tools\\Unity.SerializationLogic\\Unity.SerializationLogic.gen.csproj",
+      "packagesPath": "C:\\Users\\nidha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nidha\\OneDrive\\Bureau\\unitygithub\\UnityCsReference\\Tools\\Unity.SerializationLogic\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\nidha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netstandard2.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "projectReferences": {
+            "C:\\Users\\nidha\\OneDrive\\Bureau\\unitygithub\\UnityCsReference\\Tools\\Unity.CecilTools\\Unity.CecilTools.gen.csproj": {
+              "projectPath": "C:\\Users\\nidha\\OneDrive\\Bureau\\unitygithub\\UnityCsReference\\Tools\\Unity.CecilTools\\Unity.CecilTools.gen.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "NETStandard.Library": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

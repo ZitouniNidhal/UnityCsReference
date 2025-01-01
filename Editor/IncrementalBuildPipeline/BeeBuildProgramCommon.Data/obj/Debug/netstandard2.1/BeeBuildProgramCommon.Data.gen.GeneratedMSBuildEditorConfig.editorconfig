@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = BeeBuildProgramCommon.Data.gen
+build_property.ProjectDir = c:\Users\nidha\OneDrive\Bureau\unitygithub\UnityCsReference\Editor\IncrementalBuildPipeline\BeeBuildProgramCommon.Data\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
